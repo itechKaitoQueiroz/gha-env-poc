@@ -1,0 +1,40 @@
+name: deploy
+run-name: Deploy
+on: push
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  deploy-to-cloudflare-pages:
+    timeout-minutes: 5
+    name: Deploy to CF Pages
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🔔
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: https://npm.pkg.github.com/
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Create a robots.txt file to stop the site from being indexed
+        run: |
+          echo 'User-agent: * Disallow: /' > public/robots.txt
+
+      - name: Build App
+        run: pnpm install --frozen-lockfile && pnpm build --filter=website1
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NITRO_PRESET: cloudflare_pages
+      - name: Deploy code to Cloudflare Pages
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: npx wrangler --project-name opengine-monorepo-poc pages deploy dist

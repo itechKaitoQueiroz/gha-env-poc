@@ -1,0 +1,29 @@
+{
+  "name": "@netmanagement/opengine-template",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --port=3030",
+    "generate": "nuxt generate",
+    "lint": "eslint '/**/*.{js,jsx,ts,tsx,vue}'",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "npx nuxi typecheck"
+  },
+  "devDependencies": {
+    "@netmanagement/opengine-components": "workspace:^",
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@nuxtjs/tailwindcss": "^6.10.0",
+    "@repo/eslint-config": "workspace:^",
+    "@repo/typescript-config": "workspace:^",
+    "eslint": "^8.48.0",
+    "nuxt": "^3.8.1",
+    "typescript": "^5.2.2",
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5",
+    "vue-tsc": "^1.8.22"
+  }
+}

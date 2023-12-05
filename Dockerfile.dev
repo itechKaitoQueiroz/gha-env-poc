@@ -1,0 +1,13 @@
+FROM node:18-alpine
+
+# RUN npm install -g pnpm@8
+RUN npm install --global pnpm@8 \
+  && SHELL=bash pnpm setup \
+  && source /root/.bashrc \
+  && pnpm config set store-dir /root/.local/share/pnpm/store
+
+WORKDIR /opengine
+
+COPY package.json .npmrc pnpm-lock.yaml ./
+
+EXPOSE 3000
