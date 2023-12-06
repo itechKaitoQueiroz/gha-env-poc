@@ -8,31 +8,61 @@ permissions:
 
 jobs:
   deploy-to-cloudflare-pages:
-    timeout-minutes: 5
     name: Deploy to CF Pages
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ 18 ]
+    timeout-minutes: 5
 
     steps:
       - name: Checkout 🔔
         uses: actions/checkout@v3
 
-      - name: Setup Node.js 18
+      - name: Setup Node.js ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
-          node-version: 18
-          registry-url: https://npm.pkg.github.com/
-          cache: pnpm
-          cache-dependency-path: pnpm-lock.yaml
+          node-version: ${{ matrix.node }}
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('./app/nuxt/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Create a robots.txt file to stop the site from being indexed
         run: |
           echo 'User-agent: * Disallow: /' > public/robots.txt
 
-      - name: Build App
+      - name: Build app
         run: pnpm install --frozen-lockfile && pnpm build --filter=website1
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NITRO_PRESET: cloudflare_pages
+
       - name: Deploy code to Cloudflare Pages
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
