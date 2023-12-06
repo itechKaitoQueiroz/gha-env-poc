@@ -47,9 +47,15 @@ importers:
 
   apps/website2:
     devDependencies:
+      '@netmanagement/opengine-template':
+        specifier: workspace:^
+        version: link:../../packages/opengine-template
       '@nuxt/devtools':
         specifier: latest
         version: 1.0.2(nuxt@3.8.1)(vite@4.5.0)
+      '@nuxtjs/tailwindcss':
+        specifier: ^6.10.0
+        version: 6.10.0(webpack@5.89.0)
       nuxt:
         specifier: ^3.8.1
         version: 3.8.1(eslint@8.48.0)(typescript@5.2.2)(vite@4.5.0)(vue-tsc@1.8.22)
