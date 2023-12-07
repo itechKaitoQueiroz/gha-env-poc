@@ -88,6 +88,9 @@ pnpm dev --filter=website1
 pnpm dev --filter=website1 --filter=opengine-components
 ```
 
+> **Note:** Whenever you switch from local to Docker development, or vice-versa, you might run into an issue where the PNPM asks confirmation to reinstall all the packages.
+> If you encounter this issue, the easisest way to solve this is to delete the `node_modules` folder and try again.
+
 ## Adding a new Website
 
 To add a new site, create a new Nuxt project under the `/apps` folder by running:
@@ -102,17 +105,17 @@ pnpm install @nuxtjs/tailwindcss
 
 Next, in order to take advantage of shared configuration and use the custom OpEngine starter template, we need to add our `@netmanagement/opengine-template` package to the new site's `package.json` and extend it in the `nuxt.config.ts`.
 
-```json
-// ./apps/new-website/package.json
+`./apps/new-website/package.json:`
 
+```json
   "devDependencies": {
     "@netmanagement/opengine-template": "workspace:^",
   }
 ```
 
-```ts
-// ./apps/new-website/nuxt.config.ts
+`./apps/new-website/nuxt.config.ts:`
 
+```ts
 export default defineNuxtConfig({
   extends: ['../../packages/opengine-template'],
   modules: ['@nuxtjs/tailwindcss'],
