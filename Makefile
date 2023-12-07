@@ -29,3 +29,6 @@ install:
 
 dev:
 	${COMPOSE_SERVICE} exec ${SERVICE} pnpm ${ADDITIONAL_ARGS} dev
+
+build:
+	${COMPOSE_SERVICE} exec ${SERVICE} pnpm ${ADDITIONAL_ARGS} build

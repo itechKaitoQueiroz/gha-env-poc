@@ -1,8 +1,9 @@
 <template>
   <div class="container">
-    <h1>Welcome</h1>
+    <h1>Welcome to Website 1</h1>
     <SomeComponent />
     <AnotherComponent />
+    <CustomWebsiteComponent />
   </div>
 </template>
 

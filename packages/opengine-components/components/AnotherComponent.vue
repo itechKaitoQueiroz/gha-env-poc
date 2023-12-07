@@ -1,6 +1,6 @@
 <template>
   <div>
     <h2>Component Repo</h2>
-    <p>Hello, this is ANOTHER shared component.</p>
+    <p class="bg-black text-white">Hello, this is ANOTHER shared component.</p>
   </div>
 </template>

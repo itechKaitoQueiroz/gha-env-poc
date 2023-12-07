@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <h1>This is a custom page on Website 1</h1>
+    <h1>Welcome to Website 2</h1>
     <SomeComponent />
-    <CustomWebsiteComponent />
+    <AnotherComponent />
   </div>
 </template>
 

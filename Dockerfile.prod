@@ -1,0 +1,20 @@
+FROM node:18-alpine
+
+# RUN npm install -g pnpm@8
+RUN npm install --global pnpm@8 \
+  && SHELL=bash pnpm setup \
+  && source /root/.bashrc \
+  && pnpm config set store-dir /root/.local/share/pnpm/store
+
+ARG PROJECT_NAME
+
+COPY . /opengine/.
+RUN rm -R /opengine/apps
+COPY /apps/${PROJECT_NAME} /opengine/apps/${PROJECT_NAME}/.
+
+WORKDIR /opengine
+
+EXPOSE 3000
+
+RUN pnpm install --frozen-lockfile && pnpm build:apps
+RUN pnpm start:app

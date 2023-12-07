@@ -1,6 +1,0 @@
-<template>
-  <div>
-    <NuxtWelcome />
-    WEBSITE 1
-  </div>
-</template>

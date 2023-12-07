@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "build:apps": "turbo run build --filter=./apps/*",
+    "build": "turbo run lint build",
+    "build:apps": "turbo run lint build --filter=./apps/*",
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "preview": "turbo run preview"
+    "preview": "turbo run preview",
+    "start:app": "turbo run start --filter=./apps/*"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
