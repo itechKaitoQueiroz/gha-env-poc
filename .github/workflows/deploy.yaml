@@ -55,7 +55,7 @@ jobs:
 
       - name: Create a robots.txt file to stop the site from being indexed
         run: |
-          echo 'User-agent: * Disallow: /' > apps/website1/robots.txt
+          echo 'User-agent: * Disallow: /' > apps/website1/public/robots.txt
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
