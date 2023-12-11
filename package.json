@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "turbo run lint build",
+    "build": "turbo run lint build --filter=${0}",
     "build:apps": "turbo run lint build --filter=./apps/*",
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
