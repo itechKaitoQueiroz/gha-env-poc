@@ -57,10 +57,14 @@ jobs:
         run: |
           echo 'User-agent: * Disallow: /' > apps/website1/robots.txt
 
-      - name: Build app
-        run: pnpm install --frozen-lockfile && pnpm build --filter=website1
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build app
+        run: pnpm build --filter=website1
+        env:
           NITRO_PRESET: cloudflare_pages
 
       - name: Deploy code to Cloudflare Pages
