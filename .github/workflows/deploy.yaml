@@ -68,6 +68,7 @@ jobs:
           NITRO_PRESET: cloudflare_pages
 
       - name: Deploy code to Cloudflare Pages
+        working-directory: apps/website1
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
