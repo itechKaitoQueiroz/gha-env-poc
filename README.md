@@ -34,7 +34,7 @@ This Turborepo includes the following packages/apps:
 - `opengine-core`: not in use at the moment. To be used for server side functions, utility libraries, APIs, etc.
 - `opengine-template`: website template. All websites should extend this package.
 - `eslint-config`: `eslint` configurations (includes `library` and `nuxt`)
-- `typescript-config`: `tsconfig.json`s used throughout the monorepo
+- `typescript-config`: Typescript config templates used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
@@ -143,7 +143,7 @@ module.exports = {
 }
 ```
 
-## Releasing a package (Example workflow) - WIP
+## Releasing a package (Example workflow) - WIP (NOT TESTED)
 
 > [Changesets](https://github.com/changesets/changesets) is a tool to manage CI package deployments and changelog.
 
@@ -160,6 +160,10 @@ module.exports = {
 - Automate new website creation via [Turborepo's Code Generation](https://turbo.build/repo/docs/core-concepts/monorepos/code-generation) feature to create new sites without the extra configuration steps.
 
 ## Useful Links
+
+Monorepo introduction and main concepts:
+
+- [Monorepo Handbook](https://turbo.build/repo/docs/handbook)
 
 Learn more about the power of Turborepo:
 
