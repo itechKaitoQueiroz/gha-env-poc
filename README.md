@@ -7,6 +7,8 @@ This is the OpEngine monorepo Poc and playground for experiments.
 Make sure you have Node >=18 and PNPM installed globally on your system.
 Alternatively, if you prefer to use Docker, check the root Makefile for the available Docker commands.
 
+> **Note:** If using VS Code as your editor of choice, you might be prompted to install a few recommended extensions. If prompted, it is recommended that you install them in order to correctly enforce linting and code style rules.
+
 ## Installation
 
 Install the project with (preferred method):
@@ -89,7 +91,7 @@ pnpm dev --filter=website1 --filter=opengine-components
 ```
 
 > **Note:** Whenever you switch from local to Docker development, or vice-versa, you might run into an issue where the PNPM asks confirmation to reinstall all the packages.
-> If you encounter this issue, the easisest way to solve this is to delete the `node_modules` folder and try again.
+If you encounter this issue, the easisest way to solve this is to delete the `node_modules` folder and try again.
 
 ## Adding a new Website
 
