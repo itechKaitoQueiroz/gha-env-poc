@@ -100,6 +100,8 @@ To add a new site, create a new Nuxt project under the `/apps` folder by running
 ```sh
 cd apps
 pnpm dlx nuxi@latest init <project-name>
+# Package manager: pnpm
+# Init git repo: No
 
 # Install TailwindCSS
 pnpm install @nuxtjs/tailwindcss
