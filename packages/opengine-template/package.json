@@ -7,7 +7,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev --port=3030",
     "generate": "nuxt generate",
-    "lint": "eslint '/**/*.{js,jsx,ts,tsx,vue}'",
+    "lint": "eslint .",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "typecheck": "npx nuxi typecheck"
