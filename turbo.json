@@ -13,6 +13,16 @@
         ".env"
       ]
     },
+    "preview": {
+      "dependsOn": ["build"],
+      "outputs": ["dist/**", ".output/**"],
+      "dotEnv": [
+        ".env.production.local",
+        ".env.production",
+        ".env.local",
+        ".env"
+      ]
+    },
     "lint": {},
     "dev": {
       "cache": false,
