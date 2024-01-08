@@ -1,3 +1,4 @@
+/** @type {import('@commitlint/types').UserConfig} */
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   rules: {
@@ -7,6 +8,8 @@ module.exports = {
       [
         // Changes that affect the build system or dependency-only changes
         'build',
+        // Other changes that don't modify src or test files
+        'chore',
         // Changes to CI workflows
         'ci',
         // Documentation-only changes
@@ -21,7 +24,7 @@ module.exports = {
         'refactor',
         // A commit that reverts a previous commit
         'revert',
-        // Changes that do not affect the meaning of the code
+        // Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
         'style',
         // Adding missing tests or correcting existing tests
         'test',
