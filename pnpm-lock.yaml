@@ -11,10 +11,10 @@ importers:
       '@changesets/cli':
         specifier: ^2.27.1
         version: 2.27.1
-      '@repo/eslint-config':
+      '@netmanagement/eslint-config':
         specifier: workspace:*
         version: link:packages/eslint-config
-      '@repo/typescript-config':
+      '@netmanagement/typescript-config':
         specifier: workspace:*
         version: link:packages/typescript-config
       prettier:
@@ -95,15 +95,15 @@ importers:
 
   packages/opengine-components:
     devDependencies:
+      '@netmanagement/eslint-config':
+        specifier: workspace:^
+        version: link:../eslint-config
+      '@netmanagement/typescript-config':
+        specifier: workspace:^
+        version: link:../typescript-config
       '@nuxt/devtools':
         specifier: latest
         version: 1.0.2(nuxt@3.8.1)(vite@4.5.0)
-      '@repo/eslint-config':
-        specifier: workspace:^
-        version: link:../eslint-config
-      '@repo/typescript-config':
-        specifier: workspace:^
-        version: link:../typescript-config
       eslint:
         specifier: ^8.48.0
         version: 8.48.0
@@ -140,9 +140,15 @@ importers:
 
   packages/opengine-template:
     devDependencies:
+      '@netmanagement/eslint-config':
+        specifier: workspace:^
+        version: link:../eslint-config
       '@netmanagement/opengine-components':
         specifier: workspace:^
         version: link:../opengine-components
+      '@netmanagement/typescript-config':
+        specifier: workspace:^
+        version: link:../typescript-config
       '@nuxt/devtools':
         specifier: latest
         version: 1.0.2(nuxt@3.8.1)(vite@4.5.0)
@@ -152,12 +158,6 @@ importers:
       '@nuxtjs/tailwindcss':
         specifier: ^6.10.0
         version: 6.10.0(webpack@5.89.0)
-      '@repo/eslint-config':
-        specifier: workspace:^
-        version: link:../eslint-config
-      '@repo/typescript-config':
-        specifier: workspace:^
-        version: link:../typescript-config
       eslint:
         specifier: ^8.48.0
         version: 8.48.0
