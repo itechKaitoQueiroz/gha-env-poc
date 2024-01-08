@@ -13,12 +13,12 @@
     "typecheck": "npx nuxi typecheck"
   },
   "devDependencies": {
+    "@netmanagement/eslint-config": "workspace:^",
+    "@netmanagement/typescript-config": "workspace:^",
     "@netmanagement/opengine-components": "workspace:^",
     "@nuxt/devtools": "latest",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/tailwindcss": "^6.10.0",
-    "@repo/eslint-config": "workspace:^",
-    "@repo/typescript-config": "workspace:^",
     "eslint": "^8.48.0",
     "nuxt": "^3.8.1",
     "typescript": "^5.2.2",
