@@ -1,5 +1,3 @@
-// Not being used at the moment. Using @nuxtjs/eslint-module instead.
-
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   root: true,
