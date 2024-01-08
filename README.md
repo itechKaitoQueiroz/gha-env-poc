@@ -35,12 +35,12 @@ This Turborepo includes the following packages/apps:
 
 ### Apps and Packages
 
-- `website1`: example website 1
-- `website2`: example website 2
+- `website1` (Port: 3100): example website 1
+- `website2` (Port: 3200): example website 2
 
-- `opengine-components`: shared Nuxt UI component library
-- `opengine-core`: not in use at the moment. To be used for server side functions, utility libraries, APIs, etc.
-- `opengine-template`: website template. All websites should extend this package.
+- `opengine-core` (Port: 3010): not in use at the moment. To be used for server side functions, utility libraries, APIs, etc.
+- `opengine-components` (Port: 3020): shared Nuxt UI component library
+- `opengine-template` (Port: 3030): website template. All websites should extend this package.
 - `eslint-config`: `eslint` configurations (includes `library` and `nuxt`)
 - `typescript-config`: Typescript config templates used throughout the monorepo
 
