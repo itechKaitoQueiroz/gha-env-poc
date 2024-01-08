@@ -56,7 +56,7 @@ This Turborepo has some additional tools already setup for you:
 
 ## Adding/removing/updating NPM packages in a package/app project
 
-To add, remove or update a NPM package in a package or website, you have to use the `--filter` option, where `<workspace>` corresponds to the name of the package/website which is defined in the `name` property of the `package.json` file:
+To add, remove or update a NPM package in a package or website, you can either go into the package/website's folder and run the usual pnpm commands `add/uninstall/update` or you can run them in the monorepo root directory using the `--filter` option, where `<workspace>` corresponds to the name of the package/website which is defined in the `name` property of the `package.json` file:
 
 ```sh
 pnpm add <package> --filter <workspace>
@@ -66,7 +66,22 @@ pnpm uninstall <package> --filter <workspace>
 pnpm update <package> --filter <workspace>
 ```
 
-## Develop
+Examples:
+
+```sh
+cd packages/website-template
+pnpm add @nuxtjs/tailwindcss
+
+# Or using the --filter option
+
+pnpm add @nuxtjs/tailwindcss --filter @netmanagement/opengine-template
+# or
+pnpm add @nuxtjs/tailwindcss --filter opengine-template
+# or instead of a <space> between --filter and the project name, you can also use the = sign
+pnpm add @nuxtjs/tailwindcss --filter=opengine-template
+```
+
+## Start the project (Development mode)
 
 To develop all apps and packages, run the following command:
 
@@ -123,23 +138,39 @@ To add a new site, create a new Nuxt project under the `/apps` folder by running
 
 ```sh
 cd apps
-pnpm dlx nuxi@latest init <project-name>
+pnpm dlx nuxi@latest init <new-project-name>
 # Package manager: pnpm
 # Init git repo: No
 
 # Install TailwindCSS
-pnpm install @nuxtjs/tailwindcss
+cd <new-project-name>
+pnpm add @nuxtjs/tailwindcss
 ```
 
-Next, in order to take advantage of shared configuration and use the custom OpEngine starter template, we need to add our `@netmanagement/opengine-template` package to the new site's `package.json` and extend it in the `nuxt.config.ts`.
+In the `package.json` file:
+
+- Change the name of the project to the website's name
+- Assign a unique port number in the `dev` script
+- Add `@netmanagement/opengine-template` to the list of dev dependencies (to use the custom OpEngine website starter template and take advantage of shared configuration)
 
 `./apps/<new-website>/package.json:`
 
 ```json
-  "devDependencies": {
-    "@netmanagement/opengine-template": "workspace:^",
+  {
+    "name": "new-project-name",
+    ...
+    "scripts": {
+      "dev": "nuxt dev --port=3200",
+      ...
+    },
+    "devDependencies": {
+      "@netmanagement/opengine-template": "workspace:^",
+      ...
+    }
   }
 ```
+
+Next we need to extend the `opengine-template` in `nuxt.config.ts` and add the Tailwind Nuxt module.
 
 `./apps/<new-website>/nuxt.config.ts:`
 
@@ -158,7 +189,7 @@ Example `tailwind.config.cjs`:
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  presets: [require('@netmanagement/opengine-template/tailwind.config.cjs')],
+  presets: [require('../../opengine-template/tailwind.config.cjs')],
   content: ['./**/*.{html,js,ts,vue}'],
   theme: {
     extend: {
@@ -172,6 +203,13 @@ module.exports = {
 ```
 
 Lastly, copy the `packages/website-template/.eslintrc.cjs` file into the root of your new website folder.
+
+Now you can install the new dependencies and run your new project in development mode:
+
+```sh
+pnpm install
+pnpm dev --filter <new-project-name>
+```
 
 ## Releasing a package (Example workflow) - WIP (NOT TESTED)
 
