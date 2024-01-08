@@ -4,8 +4,14 @@ This is the OpEngine monorepo Poc and playground for experiments.
 
 ## Pre-requisites
 
-Make sure you have Node >=18 and PNPM installed globally on your system.
+Make sure you have Node >=18 and PNPM installed globally on your system. Check the root `package.json` for more details on whats versions are allowed.
 Alternatively, if you prefer to use Docker, check the root Makefile for the available Docker commands.
+
+Copy the `.env.example` and rename it to `.env`.
+
+```sh
+cp .env.example .env
+```
 
 > **Note:** If using VS Code as your editor of choice, you might be prompted to install a few recommended extensions. If prompted, it is recommended that you install them in order to correctly enforce linting and code style rules.
 
@@ -32,7 +38,7 @@ This Turborepo includes the following packages/apps:
 - `website1`: example website 1
 - `website2`: example website 2
 
-- `opengine-components`: shared UI component library
+- `opengine-components`: shared Nuxt UI component library
 - `opengine-core`: not in use at the moment. To be used for server side functions, utility libraries, APIs, etc.
 - `opengine-template`: website template. All websites should extend this package.
 - `eslint-config`: `eslint` configurations (includes `library` and `nuxt`)
@@ -48,27 +54,17 @@ This Turborepo has some additional tools already setup for you:
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
 
-## Build
+## Adding/removing/updating NPM packages in a package/app project
 
-To build all apps and packages, run the following command:
-
-```sh
-pnpm build
-
-# If using Docker, run this instead:
-make build
-```
-
-To build a specific app or package, use the `--filter` option:
+To add, remove or update a NPM package in a package or website, you have to use the `--filter` option, where `<workspace>` corresponds to the name of the package/website which is defined in the `name` property of the `package.json` file:
 
 ```sh
-pnpm build --filter=website1
+pnpm add <package> --filter <workspace>
 
-# Building multiple specific apps/packages simultaneously
-pnpm build --filter=website1 --filter=opengine-components
+pnpm uninstall <package> --filter <workspace>
+
+pnpm update <package> --filter <workspace>
 ```
-
-> The `--filter` option takes one value correspondent to the name property of the app/package specified in the `package.json`
 
 ## Develop
 
@@ -93,6 +89,34 @@ pnpm dev --filter=website1 --filter=opengine-components
 > **Note:** Whenever you switch from local to Docker development, or vice-versa, you might run into an issue where the PNPM asks confirmation to reinstall all the packages.
 If you encounter this issue, the easisest way to solve this is to delete the `node_modules` folder and try again.
 
+## Build and Preview
+
+To build all apps and packages, run the following command:
+
+```sh
+pnpm build
+
+# If using Docker, run this instead:
+make build
+```
+
+To build a specific app or package, use the `--filter` option:
+
+```sh
+pnpm build --filter=website1
+
+# Building multiple specific apps/packages simultaneously
+pnpm build --filter=website1 --filter=opengine-components
+```
+
+To build AND preview a specific app or package, run:
+
+```sh
+pnpm preview --filter=website1
+```
+
+> The `--filter` option takes one value correspondent to the name property of the app/package specified in the `package.json` file
+
 ## Adding a new Website
 
 To add a new site, create a new Nuxt project under the `/apps` folder by running:
@@ -109,7 +133,7 @@ pnpm install @nuxtjs/tailwindcss
 
 Next, in order to take advantage of shared configuration and use the custom OpEngine starter template, we need to add our `@netmanagement/opengine-template` package to the new site's `package.json` and extend it in the `nuxt.config.ts`.
 
-`./apps/new-website/package.json:`
+`./apps/<new-website>/package.json:`
 
 ```json
   "devDependencies": {
@@ -117,7 +141,7 @@ Next, in order to take advantage of shared configuration and use the custom OpEn
   }
 ```
 
-`./apps/new-website/nuxt.config.ts:`
+`./apps/<new-website>/nuxt.config.ts:`
 
 ```ts
 export default defineNuxtConfig({
@@ -146,6 +170,8 @@ module.exports = {
   },
 }
 ```
+
+Lastly, copy the `packages/website-template/.eslintrc.cjs` file into the root of your new website folder.
 
 ## Releasing a package (Example workflow) - WIP (NOT TESTED)
 
