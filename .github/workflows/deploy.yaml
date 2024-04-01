@@ -1,5 +1,5 @@
 name: Deploy
-run-name: Deploy to: ${{ inputs.environment }}
+run-name: "Deploy to: ${{ inputs.environment }}"
 
 on:
   push:
