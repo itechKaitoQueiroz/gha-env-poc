@@ -46,10 +46,10 @@ jobs:
 
       - name: Deploy
         env:
-          SITE_NAME: ${{ inputs.environment | awk -F '/' '{print $1}' }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           echo "Vars: ${{ toJson(vars) }}"
           ls -la
-          npx wrangler --project-name gha-env-poc-${{ env.SITE_NAME }} pages publish apps/${{ env.SITE_NAME }}/dist
+          SITE_NAME=$(echo ${inputs.environment} | awk -F '/' '{print $1}')
+          npx wrangler --project-name gha-env-poc-${SITE_NAME} pages publish apps/${SITE_NAME}/dist
