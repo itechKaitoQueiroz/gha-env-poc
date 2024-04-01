@@ -60,12 +60,8 @@ jobs:
         run: |
           echo "${{ steps.site_config.outputs.site_name }}"
           echo $(npx wrangler pages project create gha-env-poc-${{ steps.site_config.outputs.site_name }} --production-branch main) &> create-project-output.log
-          echo $(cat create-project-output.log)
-
+          echo $( contains( $(echo $(cat create-project-output.log) ), 'already exists') && 'Project already exists'
 
       - name: Deploy
         run: |
-          echo "Vars: ${{ toJson(vars) }}"
-          ls -la
-
-          npx wrangler pages deploy apps/${SITE_NAME}/dist --project-name gha-env-poc-${SITE_NAME}
+          npx wrangler pages deploy apps/${{ steps.site_config.outputs.site_name }}/dist --project-name gha-env-poc-${{ steps.site_config.outputs.site_name }}
