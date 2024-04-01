@@ -52,7 +52,7 @@ jobs:
       - name: Set site name
         id: site_config
         run: |
-          SITE_NAME=$(echo ${{env.ENVIRONMENT_NAME}} | awk -F '/' '{print $1 "-" $2}')
+          SITE_NAME=$(echo ${{env.ENVIRONMENT_NAME}} | awk -F '/' '{print $1}')
           SITE_ENV_NAME=$(echo ${{env.ENVIRONMENT_NAME}} | awk -F '/' '{print $1 "-" $2}')
           echo "site_name=${SITE_NAME}" >> $GITHUB_OUTPUT
           echo "site_env_name=${SITE_ENV_NAME}" >> $GITHUB_OUTPUT
