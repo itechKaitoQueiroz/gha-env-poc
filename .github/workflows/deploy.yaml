@@ -57,6 +57,7 @@ jobs:
 
       - name: Create Project in Cloudflare Pages
         run: |
+          echo "${{ steps.vars.outputs.site_name }}"
           CREATE_PROJECT_RESPONSE="$(npx wrangler pages project create gha-env-poc-${{ steps.vars.outputs.site_name }} --production-branch main)"
           echo $CREATE_PROJECT_RESPONSE
           echo $(contains($CREATE_PROJECT_RESPONSE, 'already exists') && 'Project already exists.')
