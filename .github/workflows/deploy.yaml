@@ -35,19 +35,19 @@ jobs:
         with:
           node-version: 18
           cache: 'pnpm'
-      # - name: Cache turbo setup
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: .turbo
-      #     key: ${{ runner.os }}-turbo-${{ github.sha }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-turbo-
+      - name: Cache turbo setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
 
-      # - name: Install dependencies
-      #   run: pnpm install --frozen-lock
+      - name: Install dependencies
+        run: pnpm install --frozen-lock
 
-      # - name: Run site builds 🏗️
-      #   run: pnpm build:apps
+      - name: Run site builds 🏗️
+        run: pnpm build:apps
 
       - name: Set site name
         id: site_config
