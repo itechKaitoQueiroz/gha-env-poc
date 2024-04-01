@@ -14,6 +14,7 @@ on:
 
 jobs:
   deploy:
+    name: Deploy to ${{ vars.ENVIRONMENT_NAME }}
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment || 'website1/production' }}
     timeout-minutes: 10
@@ -39,7 +40,7 @@ jobs:
       #     restore-keys: |
       #       ${{ runner.os }}-turbo-
 
-      - name: Deploy to ${{ vars.ENVIRONMENT_NAME }}
+      - name: Deploy
         env:
           ENVIRONMENT: ${{ inputs.environment }}
         run: |
