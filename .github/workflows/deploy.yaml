@@ -12,7 +12,8 @@ on:
         description: 'Environment to run tests against'
         type: environment
         required: true
-
+env:
+  ENVIRONMENT_NAME: ${{ inputs.environment || 'website1/production' }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -50,7 +51,7 @@ jobs:
 
       - name: Set site name
         run: |
-          SITE_NAME=$(echo ${{inputs.environment}} | awk -F '/' '{print $1}')
+          SITE_NAME=$(echo ${{env.ENVIRONMENT_NAME}} | awk -F '/' '{print $1}')
           echo $SITE_NAME
 
       - name: Create Project in Cloudflare Pages
