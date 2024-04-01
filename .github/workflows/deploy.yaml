@@ -60,7 +60,7 @@ jobs:
         run: |
           echo "${{ steps.site_config.outputs.site_name }}"
           CREATE_PROJECT_RESPONSE="$(npx wrangler pages project create gha-env-poc-${{ steps.site_config.outputs.site_name }} --production-branch main)"
-          echo "${CREATE_PROJECT_RESPONSE}"
+          echo "RESULT: ${CREATE_PROJECT_RESPONSE}"
 
       - name: Deploy
         run: |
