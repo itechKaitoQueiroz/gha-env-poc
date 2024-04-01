@@ -12,16 +12,12 @@ on:
         description: 'Environment to run tests against [Test](https://google.com)'
         type: environment
         required: true
-env:
-  envName: ${{ inputs.environment || 'website1/production' }}
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: ${{ env.envName }}
+    environment: ${{ inputs.environment || 'website1/production' }}
     timeout-minutes: 10
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout 🔔
