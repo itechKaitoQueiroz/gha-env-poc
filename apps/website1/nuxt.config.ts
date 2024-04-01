@@ -7,8 +7,8 @@ export default defineNuxtConfig({
   ],
   nitro: {
     preset: 'cloudflare-pages',
-    output: {
-      dir: '../../.turbo/website1'
-    }
+    // output: {
+    //   dir: '../../.turbo/website1'
+    // }
   }
 })
