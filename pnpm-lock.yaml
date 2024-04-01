@@ -27,7 +27,7 @@ importers:
   apps/website1:
     devDependencies:
       '@netmanagement/opengine-template':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/opengine-template
       '@nuxt/devtools':
         specifier: latest
@@ -48,7 +48,7 @@ importers:
   apps/website2:
     devDependencies:
       '@netmanagement/opengine-template':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../packages/opengine-template
       '@nuxt/devtools':
         specifier: latest
@@ -96,10 +96,10 @@ importers:
   packages/opengine-components:
     devDependencies:
       '@netmanagement/eslint-config':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../eslint-config
       '@netmanagement/typescript-config':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../typescript-config
       '@nuxt/devtools':
         specifier: latest
@@ -141,13 +141,13 @@ importers:
   packages/opengine-template:
     devDependencies:
       '@netmanagement/eslint-config':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../eslint-config
       '@netmanagement/opengine-components':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../opengine-components
       '@netmanagement/typescript-config':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../typescript-config
       '@nuxt/devtools':
         specifier: latest
