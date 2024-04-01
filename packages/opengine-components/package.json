@@ -4,8 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev --port=3020",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "generate": "nuxt generate",
     "lint": "eslint .",
@@ -13,8 +11,8 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@netmanagement/eslint-config": "workspace:^",
-    "@netmanagement/typescript-config": "workspace:^",
+    "@netmanagement/eslint-config": "workspace:*",
+    "@netmanagement/typescript-config": "workspace:*",
     "@nuxt/devtools": "latest",
     "eslint": "^8.48.0",
     "nuxt": "^3.8.1",

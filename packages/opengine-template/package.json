@@ -4,8 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev --port=3030",
     "generate": "nuxt generate",
     "lint": "eslint .",
     "preview": "nuxt preview",
@@ -13,9 +11,9 @@
     "typecheck": "npx nuxi typecheck"
   },
   "devDependencies": {
-    "@netmanagement/eslint-config": "workspace:^",
-    "@netmanagement/typescript-config": "workspace:^",
-    "@netmanagement/opengine-components": "workspace:^",
+    "@netmanagement/eslint-config": "workspace:*",
+    "@netmanagement/typescript-config": "workspace:*",
+    "@netmanagement/opengine-components": "workspace:*",
     "@nuxt/devtools": "latest",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@nuxtjs/tailwindcss": "^6.10.0",

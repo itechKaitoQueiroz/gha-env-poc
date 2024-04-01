@@ -11,7 +11,7 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "@netmanagement/opengine-template": "workspace:^",
+    "@netmanagement/opengine-template": "workspace:*",
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.10.0",
     "nuxt": "^3.8.1",

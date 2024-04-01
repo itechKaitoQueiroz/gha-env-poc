@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "turbo run lint build --cache-dir=.turbo",
-    "build:apps": "turbo run lint build --filter=./apps/*",
+    "build": "turbo run build --cache-dir=.turbo",
+    "build:apps": "turbo run build --filter=./apps/* --cache-dir=.turbo",
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
