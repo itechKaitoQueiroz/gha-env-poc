@@ -59,7 +59,7 @@ jobs:
       - name: Create Project in Cloudflare Pages
         run: |
           echo "${{ steps.site_config.outputs.site_name }}"
-          npx wrangler pages project create gha-env-poc-${{ steps.site_config.outputs.site_name }} --production-branch main 2>&1 | tee create-project-output.log
+          npx wrangler pages project create gha-env-poc-${{ steps.site_config.outputs.site_name }} --production-branch main > create-project-output.log
           cat create-project-output.log
 
       - name: Deploy
