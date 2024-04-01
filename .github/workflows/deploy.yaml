@@ -1,5 +1,5 @@
 name: Deploy
-run-name: "Deploy to: ${{ inputs.environment }}"
+run-name: "Deploy to: ${{ github.env.ENV_NAME }}"
 
 on:
   push:
@@ -13,7 +13,8 @@ on:
         type: environment
         required: true
         default: website2/production
-
+env:
+  ENV_NAME: ${{ inputs.environment || 'website1/production' }}
 jobs:
   deploy:
     name: Deploy to ${{ inputs.environment }}
