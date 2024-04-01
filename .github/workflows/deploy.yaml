@@ -13,11 +13,12 @@ on:
         type: environment
         required: true
 env:
-  ENV_NAME: ${{ inputs.environment || 'website1/production' }}
+  envName: ${{ inputs.environment || 'website1/production' }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: ${{ env.ENV_NAME }}
+    environment: ${{ env.envName }}
     timeout-minutes: 10
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
