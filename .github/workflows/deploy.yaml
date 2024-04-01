@@ -19,7 +19,7 @@ jobs:
     environment: ${{ inputs.environment || 'website1/production' }}
     timeout-minutes: 10
     env:
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.REPO_SECRET_CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.REPO_SECRET_CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.REPO_SECRET_CLOUDFLARE_API_TOKEN }}
 
     steps:
