@@ -12,7 +12,6 @@ on:
         description: 'Environment to run tests against [Test](https://google.com)'
         type: environment
         required: true
-        default: website2/production
 env:
   ENV_NAME: ${{ inputs.environment || 'website1/production' }}
 jobs:
