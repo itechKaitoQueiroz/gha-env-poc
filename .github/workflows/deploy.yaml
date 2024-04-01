@@ -64,7 +64,7 @@ jobs:
           echo $(npx wrangler pages project create gha-env-poc-${{ steps.site_config.outputs.site_env_name }} --production-branch main) &> create-project-output.log
           echo $(cat create-project-output.log)
           [[ $(cat create-project-output.log | grep -c 'A project with this name already exists') != 0 ]] && echo "A project with this name already exists ✅" \
-            || ([[ $(cat create-project-output.log | grep -c 'Successfully created') != 0  ]] && echo "Project successfully created ✅" || cat create-project-output.log )
+            || ([[ $(cat create-project-output.log | grep -c 'Successfully created') != 0  ]] && echo "Project successfully created ✅" || >&2 echo $(cat create-project-output.log) )
 
       - name: Deploy
         run: |
