@@ -44,12 +44,17 @@ jobs:
       - name: Run site builds 🏗️
         run: pnpm build:apps
 
+      - name: Set site name
+        run: SITE_NAME=$(echo ${inputs.environment} | awk -F '/' '{print $1}')
+
+      - name: Create Project in Cloudflare Pages
+        run: |
+          CREATE_PROJECT_RESPONSE="$(npx wrangler pages project create gha-env-poc-${SITE_NAME} --production-branch main)"
+          echo "${{ contains($CREATE_PROJECT_RESPONSE, 'already exists') && 'Project already exists.' }}"
+
       - name: Deploy
-        # env:
-        #   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        #   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           echo "Vars: ${{ toJson(vars) }}"
           ls -la
-          SITE_NAME=$(echo ${inputs.environment} | awk -F '/' '{print $1}')
-          npx wrangler --project-name gha-env-poc-${SITE_NAME} pages publish apps/${SITE_NAME}/dist
+
+          npx wrangler pages deploy apps/${SITE_NAME}/dist --project-name gha-env-poc-${SITE_NAME}
