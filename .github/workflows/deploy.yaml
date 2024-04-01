@@ -1,13 +1,18 @@
-name: CI
+name: Deploy
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
+  push:
+    - main
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
 
 jobs:
-  ci:
+  deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -31,16 +36,13 @@ jobs:
           key: ${{ runner.os }}-turbo-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-turbo-
-      - name: Cache build
-        uses: actions/cache@v4
-        with:
-          path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lock
-
-      - name: Run site builds 🏗️
-        run: pnpm build:apps
+      - name: Deploy
+        env:
+          ENVIRONMENT: ${{ inputs.environment }}
+        run: |
+          echo "Environment: $ENVIRONMENT"
+          echo "Vars: ${{ toJson(vars) }}"
+          ls -la
+          ls -la apps/website1
+          ls -la apps/website2

@@ -5,4 +5,10 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
   ],
+  nitro: {
+    preset: 'cloudflare-pages',
+    output: {
+      dir: '../../.turbo/website2'
+    }
+  }
 })

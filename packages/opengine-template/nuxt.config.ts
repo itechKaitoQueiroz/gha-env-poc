@@ -16,5 +16,5 @@ export default defineNuxtConfig({
     public: {
       environmentName: env.ENVIRONMENT_NAME, // can be overridden by NUXT_PUBLIC_ENVIRONMENT_NAME environment variable
     }
-  },
+  }
 })
