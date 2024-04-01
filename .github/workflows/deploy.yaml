@@ -16,7 +16,6 @@ env:
   ENV_NAME: ${{ inputs.environment || 'website1/production' }}
 jobs:
   deploy:
-    name: Deploy to ${{ env.ENV_NAME }}
     runs-on: ubuntu-latest
     environment: ${{ env.ENV_NAME }}
     timeout-minutes: 10
