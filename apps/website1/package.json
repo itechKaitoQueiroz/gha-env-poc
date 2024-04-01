@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "NITRO_PRESET=cloudflare_pages nuxt build ",
     "dev": "nuxt dev --port=3100",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

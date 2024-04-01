@@ -37,3 +37,10 @@ jobs:
 
       - name: Run site builds 🏗️
         run: pnpm build --filter=./apps/**
+
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Test
+      - run: echo ${{ toJson(vars) }}

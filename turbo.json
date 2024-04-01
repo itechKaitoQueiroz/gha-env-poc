@@ -6,7 +6,8 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": [
-        "apps/**/.output/**"
+        "apps/**/.output/**",
+        "apps/**/dist/**"
       ],
       "dotEnv": [
         ".env.production.local",
