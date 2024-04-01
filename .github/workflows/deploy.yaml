@@ -53,10 +53,11 @@ jobs:
         run: |
           SITE_NAME=$(echo ${{env.ENVIRONMENT_NAME}} | awk -F '/' '{print $1}')
           echo $SITE_NAME
+          echo "site_name=${SITE_NAME}" >> $GITHUB_OUTPUT
 
       - name: Create Project in Cloudflare Pages
         run: |
-          CREATE_PROJECT_RESPONSE="$(npx wrangler pages project create gha-env-poc-${{ $SITE_NAME }} --production-branch main)"
+          CREATE_PROJECT_RESPONSE="$(npx wrangler pages project create gha-env-poc-${{ steps.vars.outputs.site_name }} --production-branch main)"
           echo $CREATE_PROJECT_RESPONSE
           echo $(contains($CREATE_PROJECT_RESPONSE, 'already exists') && 'Project already exists.')
 
