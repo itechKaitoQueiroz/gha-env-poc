@@ -1,5 +1,5 @@
 name: Deploy
-run-name: "Deploy to: ${{ github.env.ENV_NAME }}"
+run-name: "Deploy to: ${{ inputs.environment || 'website1/production' }}"
 
 on:
   push:
@@ -17,9 +17,9 @@ env:
   ENV_NAME: ${{ inputs.environment || 'website1/production' }}
 jobs:
   deploy:
-    name: Deploy to ${{ inputs.environment }}
+    name: Deploy to ${{ env.ENV_NAME }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environment: ${{ env.ENV_NAME }}
     timeout-minutes: 10
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,7 +45,7 @@ jobs:
 
       - name: Deploy
         env:
-          ENVIRONMENT: ${{ inputs.environment }}
+          ENVIRONMENT: ${{ env.ENV_NAME }}
         run: |
           echo "Environment: $ENVIRONMENT"
           echo "Vars: ${{ toJson(vars) }}"
