@@ -53,16 +53,18 @@ jobs:
         id: site_config
         run: |
           SITE_NAME=$(echo ${{env.ENVIRONMENT_NAME}} | awk -F '/' '{print $1 "-" $2}')
-          echo $SITE_NAME
+          SITE_ENV_NAME=$(echo ${{env.ENVIRONMENT_NAME}} | awk -F '/' '{print $1 "-" $2}')
           echo "site_name=${SITE_NAME}" >> $GITHUB_OUTPUT
+          echo "site_env_name=${SITE_ENV_NAME}" >> $GITHUB_OUTPUT
 
       - name: Create Project in Cloudflare Pages
         run: |
-          echo "${{ steps.site_config.outputs.site_name }}"
-          echo $(npx wrangler pages project create gha-env-poc-${{ steps.site_config.outputs.site_name }} --production-branch main) &> create-project-output.log
+          echo "SITE NAME: ${{ steps.site_config.outputs.site_name }}"
+          echo "SITE ENV NAME: ${{ steps.site_config.outputs.site_env_name }}"
+          echo $(npx wrangler pages project create gha-env-poc-${{ steps.site_config.outputs.site_env_name }} --production-branch main) &> create-project-output.log
           echo $(cat create-project-output.log)
           [[ $(cat create-project-output.log | grep -c 'A project with this name already exists') != 0 ]] && echo "A project with this name already exists ✅"
 
       - name: Deploy
         run: |
-          npx wrangler pages deploy apps/${{ steps.site_config.outputs.site_name }}/dist --project-name gha-env-poc-${{ steps.site_config.outputs.site_name }}
+          npx wrangler pages deploy apps/${{ steps.site_config.outputs.site_name }}/dist --project-name gha-env-poc-${{ steps.site_config.outputs.site_env_name }}
