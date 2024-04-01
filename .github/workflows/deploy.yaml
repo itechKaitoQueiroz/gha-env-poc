@@ -39,7 +39,7 @@ jobs:
       #     restore-keys: |
       #       ${{ runner.os }}-turbo-
 
-      - name: Deploy
+      - name: Deploy to ${{ vars.ENVIRONMENT_NAME }}
         env:
           ENVIRONMENT: ${{ inputs.environment }}
         run: |
