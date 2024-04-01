@@ -5,7 +5,9 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".output/**"],
+      "outputs": [
+        "apps/**/.output/**"
+      ],
       "dotEnv": [
         ".env.production.local",
         ".env.production",
