@@ -49,7 +49,9 @@ jobs:
       #   run: pnpm build:apps
 
       - name: Set site name
-        run: SITE_NAME=$(echo ${{inputs.environment}} | awk -F '/' '{print $1}')
+        run: |
+          SITE_NAME=$(echo ${{inputs.environment}} | awk -F '/' '{print $1}')
+          echo $SITE_NAME
 
       - name: Create Project in Cloudflare Pages
         run: |
