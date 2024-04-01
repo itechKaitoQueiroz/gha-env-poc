@@ -4,8 +4,15 @@
     <SomeComponent />
     <AnotherComponent />
     <CustomWebsiteComponent />
+    {{ environmentName }}
   </div>
 </template>
+
+<script setup>
+const { environmentName } = useRuntimeConfig().public
+const config = useRuntimeConfig()
+console.log(config.value)
+</script>
 
 <style>
 html {

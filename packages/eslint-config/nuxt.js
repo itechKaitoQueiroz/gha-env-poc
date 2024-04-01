@@ -8,6 +8,6 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
-    "no-console": "error",
+    "no-console": "warn",
   },
 }

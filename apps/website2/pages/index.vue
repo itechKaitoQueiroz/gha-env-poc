@@ -3,8 +3,15 @@
     <h1>Welcome to Website 2</h1>
     <SomeComponent />
     <AnotherComponent />
+    {{ environmentName }}
   </div>
 </template>
+
+<script setup>
+const { environmentName } = useRuntimeConfig().public
+const config = useRuntimeConfig()
+console.log(config.value)
+</script>
 
 <style>
 html {
