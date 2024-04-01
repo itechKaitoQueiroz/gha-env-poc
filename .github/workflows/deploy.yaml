@@ -13,7 +13,7 @@ on:
         type: environment
         required: true
 env:
-  ENVIRONMENT_NAME: ${{ inputs.environment || 'website1/production' }}
+  ENV_NAME: ${{ inputs.environment || 'website1/production' }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -43,19 +43,26 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
+      - name: Set site name
+        id: site_config
+        run: |
+          SITE_NAME=$(echo ${{env.ENV_NAME}} | awk -F '/' '{print $1}')
+          SITE_ENV_NAME=$(echo ${{env.ENV_NAME}} | awk -F '/' '{print $1 "-" $2}')
+          echo "site_name=${SITE_NAME}" >> $GITHUB_OUTPUT
+          echo "site_env_name=${SITE_ENV_NAME}" >> $GITHUB_OUTPUT
+
       - name: Install dependencies
         run: pnpm install --frozen-lock
 
       - name: Run site builds 🏗️
         run: pnpm build:apps
 
-      - name: Set site name
-        id: site_config
+      - name: Generate .env file
         run: |
-          SITE_NAME=$(echo ${{env.ENVIRONMENT_NAME}} | awk -F '/' '{print $1}')
-          SITE_ENV_NAME=$(echo ${{env.ENVIRONMENT_NAME}} | awk -F '/' '{print $1 "-" $2}')
-          echo "site_name=${SITE_NAME}" >> $GITHUB_OUTPUT
-          echo "site_env_name=${SITE_ENV_NAME}" >> $GITHUB_OUTPUT
+          cat <<EOF > ./apps/${{ steps.site_config.outputs.site_name }}/dist/.env
+            ENVIRONMENT_NAME=${{ vars.ENVIRONMENT_NAME }}
+          EOF
+          cat ./apps/${{ steps.site_config.outputs.site_name }}/dist/.env
 
       - name: Create Project in Cloudflare Pages
         run: |
