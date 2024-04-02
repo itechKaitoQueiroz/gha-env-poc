@@ -60,10 +60,10 @@ jobs:
 
       - name: Generate .env file
         run: |
-          cat <<EOF > ./apps/${{ steps.site_config.outputs.site_name }}/.env
+          cat <<EOF > ./apps/${{ steps.site_config.outputs.site_name }}/dist/.env
             ENVIRONMENT_NAME=${{ vars.ENVIRONMENT_NAME }}
           EOF
-          cat ./apps/${{ steps.site_config.outputs.site_name }}/.env
+          cat ./apps/${{ steps.site_config.outputs.site_name }}/dist/.env
 
       - name: Create Project in Cloudflare Pages
         run: |
