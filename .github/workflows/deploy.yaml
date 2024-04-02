@@ -24,7 +24,7 @@ jobs:
     env:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.REPO_SECRET_CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.REPO_SECRET_CLOUDFLARE_API_TOKEN }}
-      NODE_ENV: 'production'
+      CI: true
 
     steps:
       - name: Checkout 🔔
