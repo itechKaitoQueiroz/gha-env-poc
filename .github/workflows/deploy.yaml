@@ -61,7 +61,7 @@ jobs:
       - name: Generate .env file
         run: |
           cat <<EOF > ./apps/${{ steps.site_config.outputs.site_name }}/dist/.env
-            ENVIRONMENT_NAME=${{ vars.ENVIRONMENT_NAME }}
+            NUXT_PUBLIC_ENVIRONMENT_NAME=${{ vars.NUXT_PUBLIC_ENVIRONMENT_NAME }}
           EOF
           cat ./apps/${{ steps.site_config.outputs.site_name }}/dist/.env
 
